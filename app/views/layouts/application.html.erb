@@ -7,13 +7,24 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% flash.each do |name, msg| %>
-  <% if %w(notice alert).include?(name.to_s) %>
-    <%= content_tag :div, msg, id: "flash_#{name}" %>
+<header>
+  <% if user_signed_in? %>
+    <%= link_to 'Home', posts_path %>
+    <%= link_to 'New post', new_post_path %>
+    <%= link_to 'Me', user_posts_path(current_user) %>
+    <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+  <% else %>
+    <%= link_to 'Log in', new_user_session_path %>
   <% end %>
-<% end %>
+</header>
+<main>
+  <% flash.each do |name, msg| %>
+    <% if %w(notice alert).include?(name.to_s) %>
+      <%= content_tag :div, msg, id: "flash_#{name}" %>
+    <% end %>
+  <% end %>
 
-<%= yield %>
-
+  <%= yield %>
+</main>
 </body>
 </html>

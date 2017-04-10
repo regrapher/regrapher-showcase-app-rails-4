@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :posts do
-    put :like, on: :member
+    post :like, on: :member
+    delete :like, on: :member, to: 'posts#dislike', as: :dislike
   end
 
   resources :users, only: [] do

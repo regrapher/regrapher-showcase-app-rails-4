@@ -1,9 +1,20 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @user = User.find(params[:user_id]) if params[:user_id].present?
+    @user  = User.find(params[:user_id]) if params[:user_id].present?
     @posts = (@user ? @user.posts : Post.all).order(id: :desc)
+  end
+
+  def like
+    current_user.post_likes.find_or_create_by(post_id: params[:id])
+    redirect_to(:back)
+  end
+
+  def dislike
+    current_user.post_likes.where(post_id: params[:id]).destroy_all
+    redirect_to(:back)
   end
 
   def new
