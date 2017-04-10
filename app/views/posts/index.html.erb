@@ -1,0 +1,4 @@
+<h1><%= @user.try(:name) || 'Public' %> Timeline</h1>
+<div class="post-list">
+  <%= render @posts %>
+</div>

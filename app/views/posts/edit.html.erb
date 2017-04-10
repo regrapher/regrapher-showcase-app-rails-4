@@ -1,0 +1,6 @@
+<h2>Edit Post</h2>
+<%= form_for(@post) do |f| %>
+  <%= f.label(:body) %>
+  <%= f.text_area(:body) %>
+  <%= f.submit('Save') %>
+<% end %>

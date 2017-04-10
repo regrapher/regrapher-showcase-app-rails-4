@@ -4,4 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
   has_many :posts, inverse_of: :user, dependent: :destroy
+
+  def name
+    "Anonymous_#{id}"
+  end
 end

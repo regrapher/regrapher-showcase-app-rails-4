@@ -1,0 +1,17 @@
+<div class="post">
+  <div class="post-body">
+    <%= simple_format(post.body) %>
+  </div>
+  <div class="post-info">
+    <div class="post-info-author"><%= (@user.presence || post.user).name %></div>
+    <div class="post-info-time"><%= time_ago_in_words(post.created_at) %> ago</div>
+  </div>
+  <div class="post-actions">
+    <% if post.can_edit?(current_user) %>
+      <%= link_to 'edit', edit_post_path(post) %>
+    <% end %>
+    <% if post.can_destroy?(current_user) %>
+      <%= link_to 'delete', post_path(post), method: :delete %>
+    <% end %>
+  </div>
+</div>
