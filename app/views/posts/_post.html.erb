@@ -1,9 +1,9 @@
-<div class="post">
+<div class="post" id="post-<%= post.id %>">
   <div class="post-body">
     <%= simple_format(post.body) %>
   </div>
   <div class="post-info">
-    <div class="post-info-author"><%= (@user.presence || post.user).name %></div>
+    <div class="post-info-author"><%= link_to post.user.name, posts_path(user_id: post.user.id) %></div>
     <div class="post-info-time"><%= time_ago_in_words(post.created_at) %> ago</div>
   </div>
   <div class="post-actions">
