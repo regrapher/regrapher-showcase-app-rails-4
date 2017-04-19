@@ -1,0 +1,11 @@
+$(document).ajaxError(function (event, jqxhr, settings, thrownError) {
+  if (jqxhr.status == 401) {
+    $('#alerts-container').html(
+      '<div class="alert alert-dismissible alert-danger">' +
+      '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
+      '<p>You need to sign in or sign up before continuing.</p>' +
+      '<p><a href="/users/sign_up" role="button" class="btn btn-danger">Sign up</a> ' +
+      '<a href="/users/sign_in" role="button" class="btn btn-default">Sign in</a> </p>');
+    $(window).scrollTop(0);
+  }
+});

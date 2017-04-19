@@ -1,26 +1,35 @@
-<div class="post" id="post-<%= post.id %>">
+<div class="post <%= 'liked' if post.liked_by?(current_user) %>" id="post-<%= post.id %>">
   <div class="post-body">
     <%= simple_format(post.body) %>
   </div>
   <div class="post-info">
-    <div class="post-info-author"><%= link_to post.user.name, posts_path(user_id: post.user.id) %></div>
+    <div class="post-info-author">by <%= link_to post.user.name, posts_path(user_id: post.user.id) %></div>
     <div class="post-info-time"><%= time_ago_in_words(post.created_at) %> ago</div>
   </div>
   <div class="post-actions">
-    <% if post.liked_by?(current_user) %>
-      <%= link_to dislike_post_path(post), method: :delete do %>dislike
+    <div class="post-actions-dislike">
+      <%= link_to post_post_likes_path(post), method: :delete, remote: true do %>
+        <%= icon('heart') %>
       <% end %>
-    <% else %>
-      <%= link_to like_post_path(post), method: :post do %>like
+    </div>
+    <div class="post-actions-like">
+      <%= link_to post_post_likes_path(post), method: :post, remote: true do %>
+        <%= icon('heart-o') %>
       <% end %>
-    <% end %>
+    </div>
     <% if post.can_edit?(current_user) %>
-      <%= link_to edit_post_path(post) do %>edit
-      <% end %>
+      <div class="post-actions-edit">
+        <%= link_to edit_post_path(post) do %>
+          <%= icon('pencil') %>
+        <% end %>
+      </div>
     <% end %>
     <% if post.can_destroy?(current_user) %>
-      <%= link_to post_path(post), method: :delete, data: { confirm: 'Are you sure?' } do %>delete
-      <% end %>
+      <div class="post-actions-delete">
+        <%= link_to post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, remote: true do %>
+          <%= icon('trash-o') %>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>

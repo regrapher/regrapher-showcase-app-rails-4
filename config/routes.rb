@@ -4,14 +4,12 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :posts do
-    post :like, on: :member
-    delete :like, on: :member, to: 'posts#dislike', as: :dislike
-    post :comments, on: :member, to: 'posts#create_comment'
-    get 'comments/:comment_id/edit', on: :member, to: 'posts#index'
-    put 'comments/:comment_id', on: :member, to: 'posts#update_comment'
+    resource :post_likes, only: [:create, :destroy]
   end
 
   resources :users, only: [] do
     resources :posts, only: [:index]
   end
+
+  get 'pages/about', to: 'pages#about', as: :about_page
 end

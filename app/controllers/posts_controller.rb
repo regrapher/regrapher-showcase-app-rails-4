@@ -9,17 +9,7 @@ class PostsController < ApplicationController
                @user.posts
              else
                Post.all.includes(:user)
-             end.order(id: :desc)
-  end
-
-  def like
-    current_user.like_post(params[:id])
-    redirect_to back_with_post_anchor_url(params[:id])
-  end
-
-  def dislike
-    current_user.dislike_post(params[:id])
-    redirect_to back_with_post_anchor_url(params[:id])
+             end.limit(1000).order(id: :desc)
   end
 
   def new
@@ -53,7 +43,9 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to(:back)
+    render js: <<-JAVASCRIPT
+      $('#post-#{params[:id]}').remove();
+    JAVASCRIPT
   end
 
   private
@@ -68,11 +60,5 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:body)
-  end
-
-  def back_with_post_anchor_url(post_id)
-    u = URI.parse(request.referer)
-    u.fragment = "post-#{post_id}" if u.fragment.blank?
-    u.to_s
   end
 end

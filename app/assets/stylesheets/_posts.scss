@@ -1,0 +1,44 @@
+.post-list {
+  margin: 15px 0 20px;
+}
+
+.post {
+  padding: 15px;
+  box-shadow: 0 0 1px 0 #2E2F30;
+  border-radius: 3px;
+
+  &.liked {
+    .post-actions-like {
+      display: none;
+    }
+  }
+
+  &:not(.liked) {
+    .post-actions-dislike {
+      display: none;
+    }
+  }
+
+  & + .post {
+    margin-top: 10px;
+  }
+  .post-body {
+
+  }
+  .post-actions {
+    > * {
+      display: inline-block;
+    }
+  }
+  .post-info {
+    > * {
+      display: inline-block;
+      color: #999999;
+    }
+    .post-info-author {
+    }
+    .post-info-time {
+      color: #999999;
+    }
+  }
+}

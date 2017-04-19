@@ -1,0 +1,12 @@
+@media (min-width: $grid-float-breakpoint) {
+  .navbar {
+    a.sign-up {
+      border: solid 3px #de5f5f;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      margin-top: 2px;
+      margin-bottom: 2px;
+      border-radius: 5px;
+    }
+  }
+}

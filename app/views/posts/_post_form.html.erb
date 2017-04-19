@@ -1,6 +1,7 @@
 <%= form_for(@post) do |f| %>
-  <%= f.label(:body) %>
-  <%= f.text_area(:body) %>
-  <%= f.submit('Save') %>
-  <%= link_to 'Cancel', :back %>
+  <div class="form-group">
+    <%= f.text_area :body, class: 'form-control' %>
+  </div>
+  <%= f.submit 'Save', class: 'btn btn-lg btn-primary' %>
+  <%= link_to 'Cancel', :back, class: 'btn btn-lg btn-default' %>
 <% end %>
