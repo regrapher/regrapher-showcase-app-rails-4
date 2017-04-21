@@ -156,6 +156,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (12.0.0)
     rdoc (4.3.0)
+    regrapher (0.1.2)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     sass (3.4.23)
@@ -224,6 +225,7 @@ DEPENDENCIES
   puma
   rails (= 4.2.8)
   rails_layout
+  regrapher
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
