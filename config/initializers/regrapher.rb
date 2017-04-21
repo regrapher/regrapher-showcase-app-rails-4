@@ -16,6 +16,6 @@ end
 ActiveSupport::Notifications.subscribe 'process_action.action_controller' do |name, started, finished, unique_id, data|
   Regrapher.client.gauge('controller.process_action.view_runtime', data[:view_runtime])
   Regrapher.client.gauge('controller.process_action.db_runtime', data[:db_runtime])
-  Regrapher.client.gauge('controller.process_action.runtime', finished-started)
+  Regrapher.client.gauge('controller.process_action.runtime', (finished-started)*1000)
   Regrapher.client.increment("controller.process_action.status_#{data[:status]}")
 end
