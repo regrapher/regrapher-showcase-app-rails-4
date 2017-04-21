@@ -4,12 +4,8 @@ class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @posts = if params[:user_id].present?
-               @user = User.find(params[:user_id])
-               @user.posts
-             else
-               Post.all.includes(:user)
-             end.limit(1000).order(id: :desc)
+    @user = User.find(params[:user_id]) if params[:user_id]
+    @posts = Post.timeline(current_user, @user)
   end
 
   def new
@@ -51,11 +47,11 @@ class PostsController < ApplicationController
   private
 
   def set_user_post
-    @post = current_user.posts.find(params[:id])
+    @post = Post.timeline(current_user, current_user).find(params[:id])
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.timeline(current_user, nil).find(params[:id])
   end
 
   def post_params

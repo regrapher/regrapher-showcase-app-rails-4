@@ -22,15 +22,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Puma as the app server
 gem 'puma'
-
 gem 'devise'
-
 gem 'bootstrap-sass', '~> 3.3.6'
-
 gem 'font-awesome-sass', '~> 4.7.0'
-
 gem 'twitter'
-
 gem 'mechanize'
 
 group :development, :test do

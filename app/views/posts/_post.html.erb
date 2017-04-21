@@ -1,9 +1,9 @@
-<div class="post <%= 'liked' if post.liked_by?(current_user) %>" id="post-<%= post.id %>">
+<div class="post <%= 'liked' if post.liked %>" id="post-<%= post.id %>">
   <div class="post-body">
     <%= simple_format(post.body) %>
   </div>
   <div class="post-info">
-    <div class="post-info-author">by <%= link_to post.user.name, posts_path(user_id: post.user.id) %></div>
+    <div class="post-info-author">by <%= link_to post.user.name, user_posts_path(post.user) %></div>
     <div class="post-info-time"><%= time_ago_in_words(post.created_at) %> ago</div>
   </div>
   <div class="post-actions">
