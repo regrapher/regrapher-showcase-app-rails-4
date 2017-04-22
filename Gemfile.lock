@@ -41,6 +41,10 @@ GEM
     autoprefixer-rails (6.7.7.2)
       execjs
     bcrypt (3.1.11)
+    better_errors (2.1.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.3.7)
@@ -49,6 +53,7 @@ GEM
     buftok (0.2.0)
     builder (3.2.3)
     byebug (9.0.6)
+    coderay (1.1.1)
     concurrent-ruby (1.0.5)
     debug_inspector (0.0.2)
     devise (4.2.1)
@@ -212,6 +217,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  better_errors
+  binding_of_caller
   bootstrap-sass (~> 3.3.6)
   byebug
   devise
@@ -234,4 +241,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.15.0.pre.1
+   1.14.6

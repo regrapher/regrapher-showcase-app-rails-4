@@ -1,3 +1,6 @@
+#
+# emit metrics on active record events
+#
 ActiveSupport.on_load(:active_record) do
   before_create do |r|
     Regrapher.client.increment("record.#{r.model_name.plural}.created")
@@ -13,9 +16,20 @@ ActiveSupport.on_load(:active_record) do
   end
 end
 
+#
+# emit metrics on authentication events
+#
+Warden::Manager.after_authentication { Regrapher.client.increment('auth.sign_in') }
+Warden::Manager.before_logout { Regrapher.client.increment('auth.sign_out') }
+
+#
+# emit metrics for action processing events
+#
 ActiveSupport::Notifications.subscribe 'process_action.action_controller' do |name, started, finished, unique_id, data|
-  Regrapher.client.gauge('controller.process_action.view_runtime', data[:view_runtime])
-  Regrapher.client.gauge('controller.process_action.db_runtime', data[:db_runtime])
-  Regrapher.client.gauge('controller.process_action.runtime', (finished-started)*1000)
-  Regrapher.client.increment("controller.process_action.status_#{data[:status]}")
+  next unless data[:status] || data[:exception]
+  status = data[:status] || Rack::Utils.status_code(ActionDispatch::ExceptionWrapper.rescue_responses[data[:exception][0]])
+  Regrapher.client.gauge("#{name}.view_runtime", data[:view_runtime].round(2)) if data[:view_runtime]
+  Regrapher.client.gauge("#{name}.db_runtime", data[:db_runtime].round(2)) if data[:db_runtime]
+  Regrapher.client.gauge("#{name}.runtime", ((finished - started) * 1000).round(2))
+  Regrapher.client.increment("#{name}.status_#{status}")
 end
