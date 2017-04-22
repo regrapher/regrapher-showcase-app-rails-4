@@ -153,7 +153,12 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
     rails_layout (1.0.34)
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.5)
     railties (4.2.8)
       actionpack (= 4.2.8)
       activesupport (= 4.2.8)
@@ -231,6 +236,7 @@ DEPENDENCIES
   pg (~> 0.15)
   puma
   rails (= 4.2.8)
+  rails_12factor
   rails_layout
   regrapher
   sass-rails (~> 5.0)
@@ -239,6 +245,9 @@ DEPENDENCIES
   twitter
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
+
+RUBY VERSION
+   ruby 2.4.1p111
 
 BUNDLED WITH
    1.14.6
