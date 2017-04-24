@@ -30,6 +30,18 @@
       display: inline-block;
     }
   }
+  .post-actions-dislike, .post-actions-like {
+    a {
+      color: red;
+    }
+  }
+  .post-actions-delete a {
+    color: darkgrey;
+  }
+  .post-actions-edit a {
+    color: #696969
+  }
+
   .post-info {
     > * {
       display: inline-block;
