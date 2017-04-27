@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:about]
+  skip_before_action :authenticate_user!, only: [:about, :about_button]
 
   def about
     Regrapher.client.increment('pages.about')
