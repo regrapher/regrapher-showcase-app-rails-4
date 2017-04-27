@@ -4,4 +4,9 @@ class PagesController < ApplicationController
   def about
     Regrapher.client.increment('pages.about')
   end
+
+  def about_button
+    Regrapher.client.increment('pages.about.button')
+    head :ok
+  end
 end

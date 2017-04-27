@@ -1,17 +1,28 @@
 <h1>About</h1>
 <p>
-  This an example application that demonstrates how you can easily instrument your rails app to build
-  and share live monitoring dashboards with <%= link_to 'Regrapher', 'https://www.regrapher.com' -%>.
+  This application demonstrates how you can easily instrument your rails app to build
+  and share live monitoring dashboards with <%= link_to 'Regrapher', 'https://www.regrapher.com', target: '_blank' -%>.
 </p>
 <p>
   <strong>
     Here is a sample shared (read-only)
-    <%= link_to 'dashboard', 'https://www.regrapher.com/shared_dashboards/dWX8UONeDHoXaLq51M5ccI8heMgsCw4LpgTD6z3F' %>
+    <%= link_to 'dashboard', 'https://www.regrapher.com/shared_dashboards/dWX8UONeDHoXaLq51M5ccI8heMgsCw4LpgTD6z3F', target: '_blank' %>
     monitoring this application activity in real-time.
   </strong>
 </p>
+<div class="well well-lg">
+  <p>
+    It is not necessary to create an account just to test how the dashboard updates in real-time. Visiting
+    <%= link_to 'this page', about_page_path %> and pushing the button below will update the <em>About Page</em> and
+    the <em>About Button</em> widgets of the
+    <%= link_to 'dashboard', 'https://www.regrapher.com/shared_dashboards/dWX8UONeDHoXaLq51M5ccI8heMgsCw4LpgTD6z3F', target: '_blank' %>.
+  </p>
+  <p>
+    <%= link_to 'About Button', about_button_path, remote: true, method: :post, class: 'btn btn-lg btn-danger', data: { disable_with: 'About Button' } %>
+  </p>
+</div>
 <p>
-  This application is open source code is available
-  at <%= link_to 'github', 'https://github.com/regrapher/regrapher-example-app-rails-4' -%>.
+  This application is open source and is available
+  at <%= link_to 'github', 'https://github.com/regrapher/regrapher-example-app-rails-4', target: '_blank' -%>.
 </p>
 

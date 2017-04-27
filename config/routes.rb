@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   end
 
   get 'pages/about', to: 'pages#about', as: :about_page
+  post 'pages/about_button', as: :about_button
 end
