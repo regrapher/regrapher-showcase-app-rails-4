@@ -1,4 +1,4 @@
-<div class="post <%= 'liked' if post.liked %>" id="post-<%= post.id %>">
+<div class="post <%= 'liked' if post.liked -%> <%= 'self' if post.user == current_user-%>" id="post-<%= post.id %>">
   <div class="post-body">
     <%= simple_format(post.body) %>
   </div>
