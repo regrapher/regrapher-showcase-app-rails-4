@@ -13,6 +13,11 @@
       <%= render 'layouts/navigation' %>
     </header>
     <main role="main" class="container">
+        <div class="alert alert-info <%= 'hidden' if request.path == about_page_path %>">
+          This application demonstrates live monitoring with
+          <b><%= link_to 'Regrapher', 'https://www.regrapher.com', target: '_blank'%></b>. More information in the
+          <b><%= link_to 'about page', about_page_path%></b>.
+        </div>
        <%= render 'layouts/messages' %>
        <%= yield %>
     </main>
