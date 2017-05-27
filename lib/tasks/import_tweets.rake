@@ -29,7 +29,7 @@ namespace :simulator do
           agent.post("#{ENV['DOMAIN_NAME']}#{e.attr('href')}", authenticity_token: authenticity_token)
         end
 
-        page.css('.post.self .post-actions-delete a').to_a.last(rand(1)).each do |e|
+        page.css('.post.self .post-actions-delete a').to_a.last(rand(2)).each do |e|
           agent.delete("#{ENV['DOMAIN_NAME']}#{e.attr('href')}", authenticity_token: authenticity_token)
         end
 
