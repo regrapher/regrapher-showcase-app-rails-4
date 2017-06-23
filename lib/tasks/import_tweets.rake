@@ -16,20 +16,20 @@ namespace :simulator do
         page.forms.first.tap do |form|
           form['user[email]']    = user_email
           form['user[password]'] = user_password
-          page = form.submit
+          page                   = form.submit
         end
 
         authenticity_token = page.at('meta[name="csrf-token"]').attr('content')
 
-        page.css('.post.liked .post-actions-dislike a').to_a.sample(4).each do |e|
+        page.css('.post.liked .post-actions-dislike a').to_a.sample(rand(4) + 1).each do |e|
           agent.delete("#{ENV['DOMAIN_NAME']}#{e.attr('href')}", authenticity_token: authenticity_token)
         end
 
-        page.css('.post:not(.liked) .post-actions-like a').to_a.sample(4).each do |e|
+        page.css('.post:not(.liked) .post-actions-like a').to_a.sample(rand(4) + 1).each do |e|
           agent.post("#{ENV['DOMAIN_NAME']}#{e.attr('href')}", authenticity_token: authenticity_token)
         end
 
-        page.css('.post.self .post-actions-delete a').to_a.last(rand(2)).each do |e|
+        page.css('.post.self .post-actions-delete a').to_a.last(rand(3)).each do |e|
           agent.delete("#{ENV['DOMAIN_NAME']}#{e.attr('href')}", authenticity_token: authenticity_token)
         end
 
@@ -37,7 +37,7 @@ namespace :simulator do
           page = agent.get("#{ENV['DOMAIN_NAME']}/posts/new")
           page.forms.first.tap do |form|
             form['post[body]'] = tweet.text
-            page = form.submit
+            page               = form.submit
           end
         end
 
